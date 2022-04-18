@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dandelion JS</title>
+    <style>
+        #item {
+            position: relative;
+            width: 500px;
+            height: auto;
+            padding: 15px 20px;
+            margin: auto;
+        }
+        button {
+            background-color: rgba(225, 225, 255, 0.7);
+            padding: 5px;
+            border: 1px solid #ccc;
+            font-size: 0.8em;
+        }
+        .over {
+            position: absolute;
+            left: 30px;
+            bottom: 30px;
+        }
+        .detail {
+            width: 400px;
+            text-align: center;
+            line-height: 1.8;
+            display: none;
+        }
+    </style>
+    <script>
+        //상세설명 보게하는 함수
+        function showDetail(){
+            document.querySelector("#desc").style.display = "block";
+            document.querySelector("#open").style.display = "none";
+        }
+
+        //상세설명 닫는 함수
+        function hideDetail(){
+            document.querySelector("#desc").style.display = "none";
+            document.querySelector("#open").style.display = "block";
+        }
+    </script>
+</head>
+<body>
+    <div id="item">
+        <img src="https://cdn.pixabay.com/photo/2014/09/27/17/35/dandelion-463928_1280.jpg" alt="dandelion" width="500">
+        <button class="over" id="open" onclick="showDetail()">상세 설명 보기</button>
+        <div class="detail" id="desc">
+            <h3>민들레</h3>
+            <p>어디서나 매우 흔하게 보이는 잡초로써 바닥에 딱 붙어서 꽃봉오리
+            하나가 쏙 올라온다. 톱니 모양의 잎새와 눈에 확 띄는 노란 꽃이 인상적이다.
+            특히 꽃이 지고나면 솜털 모양의 깃을 가진 씨앗들이 나오는데 바람을 타고 날아가서 널리 퍼진다.
+            </p>
+            <button id="close" onclick="hideDetail()">상세 설명 닫기</button>
+        </div>
+    </div>
+</body>
+</html>

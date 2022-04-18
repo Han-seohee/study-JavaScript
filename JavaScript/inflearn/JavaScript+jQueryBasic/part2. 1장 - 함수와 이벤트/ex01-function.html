@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>함수 - 1</title>
+</head>
+<body>
+    <script>
+        //반복문 활용
+        // for(var i=1; i<=5; i++) {
+        //     document.write(i + ". 한서희<br/>");
+        // }
+
+        //함수를 사용하는 방법 (코드의 재활용)
+        function callName(name, count) {
+            for(var i=1; i<=count; i++) {
+                document.write(i + ". " + name + "<br/>");
+            }
+        }
+        callName("한서희", 10);
+        callName("한라봉", 3);
+    </script>
+</body>
+</html>
