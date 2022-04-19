@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>콜백함수 - 1</title>
+</head>
+<body>
+    <!-- <script>
+        //일반함수
+        function calculator1(op, num1, num2){
+            //로직 구현부
+            var result = "";
+
+            switch (op) {
+                case "+" :
+                    result = num1 + num2;
+                    break;
+                case "-" : 
+                    result = num1 - num2;
+                    break;
+                case "*" :
+                    result = num1 * num2;
+                    break;
+                case "/" : 
+                    result = num1 / num2;
+                    break;
+                default :
+                    result = "지원하지 않는 연산자!";
+            }
+            //로직 처리 부분
+            document.write("주어진 2개의 연산결과 : " + result + "<br/>");
+        }    
+
+        //일반함수
+        function calculator2(op, num1, num2){
+            var result = "";
+
+            switch (op) {
+                case "+" :
+                    result = num1 + num2;
+                    break;
+                case "-" : 
+                    result = num1 - num2;
+                    break;
+                case "*" :
+                    result = num1 * num2;
+                    break;
+                case "/" : 
+                    result = num1 / num2;
+                    break;
+                default :
+                    result = "지원하지 않는 연산자!";
+            }
+            document.write("정답 : " + result + "<br/>");
+        }   
+        calculator1("-", 500, 300); 
+        calculator2("*", 500, 300); 
+    </script> -->
+    <!-- 👇🏻 -->
+    <script>
+        //콜백함수 풀이
+        function calculator(op, num1, num2, callback){
+            var result = "";
+
+            switch (op) {
+                case "+" :
+                    result = num1 + num2;
+                    break;
+                case "-" : 
+                    result = num1 - num2;
+                    break;
+                case "*" :
+                    result = num1 * num2;
+                    break;
+                case "/" : 
+                    result = num1 / num2;
+                    break;
+                default :
+                    result = "지원하지 않는 연산자!";
+            }
+            //콜백함수를 호출하고있다.
+            callback(result);
+        }
+        function print1(result) {
+            document.write("print1 주어진 두 수의 연산 결과 : " + result + "<br/>");
+        }
+        function print2(result) {
+            document.write("print2 주어진 두 수의 연산 결과 : " + result + "<br/>");
+        }
+        function print3(result) {
+            document.write("print3 주어진 두 수의 연산 결과 : " + result + "<br/>");
+        }
+
+        //로직 구현 부분은 하나로 가져간 형태이고,
+        //로직 처리 부분은 3가지로 나누어 만듦
+        calculator("-", 500, 300, print1);
+        calculator("-", 500, 300, print2);
+        calculator("-", 500, 300, print3);
+    </script>
+</body>
+</html>

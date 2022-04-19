@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>콜백함수 - 4</title>
+    <style>
+        .tabMenu {
+            list-style: none;
+            height: 80px;
+        }
+        .tabMenu li {
+            width: 100px;
+            height: 40px;
+            background-position-y: 0;
+            overflow: hidden;
+            display: inline-block;
+            float: left;
+        }
+        .tabMenu li:hover {
+            background-position-y: -40px;
+        }
+        .tabMenu li.select {
+            background-position-y: -80px;
+            height: 80px;
+        }
+        .tabMenu li.menuItem1 {
+            background-image: url(images/newbtn.bar.1.png);
+        }
+        .tabMenu li.menuItem2 {
+            background-image: url(images/newbtn.bar.2.png);
+        }
+        .tabMenu li.menuItem3 {
+            background-image: url(images/newbtn.bar.3.png);
+        }
+        .tabMenu li.menuItem4 {
+            background-image: url(images/newbtn.bar.4.png);
+        }
+        .tabMenu li.menuItem5 {
+            background-image: url(images/newbtn.bar.5.png);
+        }
+        .tabMenu li.menuItem6 {
+            background-image: url(images/newbtn.bar.6.png);
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            tabMenu("#tabMenu1", onSelectItem);
+        });
+
+        function tabMenu(selector, callback) {
+            var $tabMenu = null;
+            var $menuItems = null;
+
+            var $selectedMenuItem = null;
+            //요소를 초기화
+            function init(selector){
+                $tabMenu = $(selector);
+                //6개의 li를 배열로 받고있다.
+                $menuItems = $tabMenu.find("li");
+            }
+            //이벤트 초기화 및 등록
+            function initEvent() {
+                $menuItems.click(function(){
+                    //현재 선택된 li라는 요소를 매개변수로 지정
+                    setSelectItem($(this));
+                });
+            }
+            //선택된 메뉴 아이템 만들어주는 함수
+            function setSelectItem($item){
+                if($selectedMenuItem != null) {
+                    $selectedMenuItem.removeClass("select");
+                }
+                $selectedMenuItem = $item;
+                $selectedMenuItem.addClass("select");
+
+                //선택 콜백 함수를 실행하도록 했다.
+                if(callback != null){
+                    callback($selectedMenuItem.index());
+                }
+
+                $("#info").html(index);
+            }
+            init(selector);
+            initEvent();
+        }
+        //로직처리 (선택처리)
+        function onSelectItem(index) {
+            $("#info").html(index);
+        }
+    </script>
+</head>
+<body>
+    <ul class="tabMenu" id="tabMenu1">
+        <li class="menuItem1"></li>
+        <li class="menuItem2"></li>
+        <li class="menuItem3"></li>
+        <li class="menuItem4"></li>
+        <li class="menuItem5"></li>
+        <li class="menuItem6"></li>
+    </ul>
+    <div>선택한 인덱스 값 : <span id="info"></span></div>
+</body>
+</html>

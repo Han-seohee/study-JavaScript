@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>클로저 함수 - 3</title>
+    <style>
+        .tabMenu {
+            list-style: none;
+            height: 80px;
+        }
+        .tabMenu li {
+            width: 100px;
+            height: 40px;
+            background-position-y: 0;
+            overflow: hidden;
+            display: inline-block;
+            float: left;
+        }
+        .tabMenu li:hover {
+            background-position-y: -40px;
+        }
+        .tabMenu li.select {
+            background-position-y: -80px;
+            height: 80px;
+        }
+        .tabMenu li.menuItem1 {
+            background-image: url(images/newbtn.bar.1.png);
+        }
+        .tabMenu li.menuItem2 {
+            background-image: url(images/newbtn.bar.2.png);
+        }
+        .tabMenu li.menuItem3 {
+            background-image: url(images/newbtn.bar.3.png);
+        }
+        .tabMenu li.menuItem4 {
+            background-image: url(images/newbtn.bar.4.png);
+        }
+        .tabMenu li.menuItem5 {
+            background-image: url(images/newbtn.bar.5.png);
+        }
+        .tabMenu li.menuItem6 {
+            background-image: url(images/newbtn.bar.6.png);
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            tabMenu("#tabMenu1 li");
+        });
+
+        function tabMenu(selector) {
+            //$selectedMenuItem는 지역변수다.
+            var $selectedMenuItem = null;
+            
+            $(selector).click(function(){
+                //$selectedMenuItem을 계속 사용하고 있어 메모리에서 제거가 되지 않는다. 클로저 현상이 나타나고 있다.
+                if($selectedMenuItem != null){
+                    $selectedMenuItem.removeClass("select");
+                }
+                $selectedMenuItem = $(this);
+                $selectedMenuItem.addClass("select");
+            })
+            
+        }
+        //로직처리 (선택처리)
+        function onSelectItem(index) {
+            $("#info").html(index);
+        }
+    </script>
+</head>
+<body>
+    <ul class="tabMenu" id="tabMenu1">
+        <li class="menuItem1"></li>
+        <li class="menuItem2"></li>
+        <li class="menuItem3"></li>
+        <li class="menuItem4"></li>
+        <li class="menuItem5"></li>
+        <li class="menuItem6"></li>
+    </ul>
+</body>
+</html>
