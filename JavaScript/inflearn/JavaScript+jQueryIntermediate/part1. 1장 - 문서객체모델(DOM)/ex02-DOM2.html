@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM2 (이벤트 다중 추가)</title>
+    <style>
+        #container {
+            width: 400px;
+            height: 400px;
+            margin: 0 auto;
+            padding-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <img src="images/girl.png" alt="girl" id="pic">
+    </div>
+
+    <script>
+        var pic = document.querySelector("#pic");
+        //id선택자인 pic에 마우스가 올라가면 changePic()을 호출하고, false를 버블링 선택하지 않겠다.
+        //버블링이란 이벤트가 하위요소에서 발생하면 상위요소까지 전파되는 형태
+
+        //아래와 같이 하나의 선택자에 다중으로 이벤트를 등록할 수 있다.
+        pic.addEventListener("mouseover", changePic, false);
+        pic.addEventListener("mouseout", originPic, false);
+
+        function changePic() {
+            pic.src = "images/boy.png";
+        }
+
+        function originPic() {
+            pic.src = "images/girl.png";
+        }
+    </script>
+</body>
+</html>
