@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM6 (요소 삭제하기)</title>
+    <style>
+        #container {
+            width: 500px;
+            margin: 20px auto;
+        }
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+        }
+        form {
+            margin-top: 55px;
+        }
+        input[type="text"] {
+            float: left;
+            width: 300px;
+            padding: 12px;
+            border: none;
+            border-bottom: 1px solid gray;
+            font-size: 20px;
+        }
+        input:focus {
+            outline: none;
+        }
+        button {
+            width: 100px;
+            border: 1px solid gray;
+            padding: 10px;
+            margin-left: 30px;
+            font-size: 20px;
+        }
+        button:hover {
+            background-color: yellow;
+        }
+        hr {
+            clear: both;
+            visibility: hidden;
+        }
+        #nameList p {
+            font-size: 20px;
+            text-indent: 50px;
+            line-height: 1.5;
+        }
+        .del {
+            font-size: 20px;
+            text-align: center;
+            color: blue;
+            background: transparent;
+            float: right;
+            margin-right: 10px;
+        }
+        .del:hover {
+            color: red;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>참가 신청</h1>
+        <form action="">
+            <input type="text" id="userName" placeholder="이름을 입력하세요." required>
+            <button onClick="newRegister(); return false;">신청</button>
+        </form>
+        <hr>
+        <div id="nameList"></div>
+    </div>
+
+    <script>
+        function newRegister(){
+            var newP = document.createElement("p"); //새로운 p요소를 만들기
+            var userName = document.querySelector("#userName");
+            var newText = document.createTextNode(userName.value); //새로운 텍스트 노드 만들기
+            newP.appendChild(newText); //p노드가 상위요소가 되고 text라는 하위요소를 연결
+
+            var delBtn = document.createElement("span"); //새로운 버튼을 추가
+            var delText = document.createTextNode("X"); //새로운 텍스트 노드 추가
+            delBtn.setAttribute("class", "del"); //버튼에다가 class선택자 속성 추가
+            delBtn.appendChild(delText); //텍스트 노드가 button 하위요소로 연결
+            newP.appendChild(delBtn); //delBtn을 p요소의 하위요소로 만들기
+
+            var nameList = document.querySelector("#nameList");
+            nameList.insertBefore(newP, nameList.childNodes[0]); //p요소를 #nameList의 맨 앞에 추가
+            //nameList.appendChild(newP); //p노드가 #nameList의 하위요소가 된다.
+            userName.value = ""; //텍스트 필드 지우기
+
+            var removeBtns = document.querySelectorAll(".del");
+
+            //removeBtns 즉 "X"의 전체를 반복한다.
+            for(var i=0; i<removeBtns.length; i++){
+                //removeBtns의 각각의 버튼에 이벤트를 등록하고있다.
+                removeBtns[i].addEventListener("click", function(){
+                    //#nameList를 의미한다. span태그의 부모가 p이고 p의 부모가 #nameList이기때문
+                    if(this.parentNode.parentNode){
+                        //p태그를 삭제함
+                        this.parentNode.parentNode.removeChild(this.parentNode);
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>
