@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트를 단 한번만 실행</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            //이벤트를 한번만 실행하고 이후 제거하는 경우 one()사용
+            $("#btn").one("click", function(e){
+                alert("안녕하세요?!");
+            });
+        });
+    </script>
+</head>
+<body>
+    <button id="btn">실행</button>
+</body>
+</html>

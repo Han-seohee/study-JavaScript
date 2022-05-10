@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트 등록(일반, 단축), 이벤트 제거</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            //버튼에 일반 이벤트 등록(on())
+            // $("#btn").on("click", function(e){
+            //     alert("반갑습니다.");
+            // });
+
+            //버튼에 단축 이벤트 등록(click())
+            //내부적으로는 on()형태로 실행됨
+            $("#btn").click(function(e){
+                alert("반갑습니다.");
+            });
+
+            // $("p").on("mouseenter mouseleave", function(e){
+            //     $("div").append("마우스가 p태그에 들어오거나 나갔습니다." + "<br/>");
+            // });
+
+            //다중 이벤트
+            $("p").on({
+                click : function(){
+                    $("div").append("p태그가 클릭되었습니다." + "<br/>");
+                },
+                mouseenter : function(){
+                    $("div").append("p태그가 마우스에 들어왔습니다." + "<br/>");
+                },
+                mouseleave : function(){
+                    $("div").append("p태그에 마우스가 나갔습니다." + "<br/>");
+                }
+            });
+
+            //단축 이벤트 등록
+            $("p").mouseenter(function(e){
+                $("div").append("p태그가 마우스에 들어왔습니다." + "<br/>");
+            });
+            $("p").click(function(e){
+                $("div").append("p태그가 클릭되었습니다." + "<br/>");
+            });
+            $("p").mouseleave(function(e){
+                $("div").append("p태그에 마우스가 나갔습니다." + "<br/>");
+            });
+
+            //이벤트 제거 방법(off())
+            $("#remove").click(function(e){
+                $("p").off(); //등록된 이벤트 전부 제거
+                $("p").off("click"); //클릭 이벤트만 제거
+            });
+        });
+    </script>
+</head>
+<body>
+    <button id="btn">실행</button>
+    <button id="remove">제거</button>
+    <p>안녕하세요</p>
+    <div></div>
+</body>
+</html>
