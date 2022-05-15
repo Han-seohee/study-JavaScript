@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>좌표값 구하기(position()활용)</title>
+    <style>
+        body {
+            font-size: 20px;
+        }
+        #panel {
+            width: 600px;
+            height: 300px;
+            border: 2px solid gray;
+        }
+        .bar {
+            position: absolute;
+            left: 50px;
+            top: 190px;
+            width: 500px;
+            height: 20px;
+            background-color: red;
+        }
+        #earth {
+            position: absolute;
+            width: 70px;
+            left: 50px;
+            top: 120px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            //지구에 노드를 구하기
+            var $earth = $("#earth");
+            var currentX = $earth.position().left;
+            console.log(currentX);
+            //버튼 이벤트 걸기
+            $("#move").click(function(){
+                //earth의 위치 값 구하기
+                var currentX = $earth.position().left + 10;
+                //earth의 위치 값 설정하기
+                $earth.css("left", currentX);
+                console.log("currentX");
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="panel">
+        <div class="bar"></div>
+        <img src="earth.png" id="earth" alt="earth">
+        <div>
+            <button id="move">이동</button>
+        </div>
+    </div>
+</body>
+</html>
