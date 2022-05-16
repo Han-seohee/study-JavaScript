@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>지역 좌표 노드 구하기(position()활용)</title>
+    <title>지역 좌표 노드 설정하기(css()활용)</title>
     <style>
         * {
             margin: 0;
@@ -13,11 +13,12 @@
         body {
             font-size: 20px;
         }
-        #info {
-            border: 1px solid black;
+        #btnAlign {
+            position: absolute;
+            left: 100px;
+            top: 50px;
+            width: 100px;
             height: 30px;
-            margin: 50px 0 0 100px;
-            width: 500px;
         }
         #parent1 {
             position: absolute;
@@ -61,26 +62,29 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         $(document).ready(function(){
-            var $info = $("#info");
-            //.fish에 클릭 이벤트 등록
-            $(".fish").click(function(e){
-                //클릭한 물고기
-                $selectedFish = $(this);
-                //위치 구하기(position()를 통하여 위치값 속성을 가지고 있는 객체 pos에 저장)
-                var pos = $selectedFish.position();
-                //id, left, top, 부모 id값을 문자열로 만들기
-                var str = "id = " + $selectedFish.attr("id") + ", left = " + pos.left + ", top = " + pos.top + 
-                ", 부모 id = " + $selectedFish.offsetParent().attr("id");
-                //정보 출력
-                $info.html(str);
+            $("#btnAlign").click(function(e){
+                //시작 위치를 설정하기 위한 변수
+                var startX = 50;
+                var startY = 50;
+
+                //물고기 개수 만큼 루프 돌기
+                $(".fish").each(function(index){
+                    //현재 물고기의 위치를 설정
+                    $(this).css({
+                        left : startX,
+                        top : startY
+                    });
+                    //50만큼의 위치가 이동
+                    startX += 50;
+                    startY += 50;
+                });
             });
+    
         });
     </script>
 </head>
 <body>
-    <div id="info">
-        위치 값 출력
-    </div>
+    <button id="btnAlign">정렬</button>
     <div id="parent1">
         <div id="fish1" class="fish">
             <p>1</p>
