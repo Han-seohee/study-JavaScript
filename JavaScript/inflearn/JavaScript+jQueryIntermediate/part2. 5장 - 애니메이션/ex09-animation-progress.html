@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사용자 정의 애니메이션 만들기 - progress바 만들기</title>
+    <style>
+        .box {
+            border: 1px solid green;
+            margin: 10px;
+            width: 500px;
+        }
+        .bar {
+            background-color: #98bf21;
+            height: 50px;
+            width: 0;
+            border: 1px solid green;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- easing함수 라이브러리 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var text = null;
+
+            $("#btnStart").on("click", function(){
+                $(".bar").stop().animate({
+                    width : "500px"
+                }, 2000, "linear", function(){
+                    text = "프로그램 설치 완료";
+                    $("#txt").html(text);
+                });
+            });
+
+            $("#btnEnd").on("click", function(){
+                $(".bar").stop().animate({
+                    width : "1px"
+                }, 2000, "swing", function(){
+                    text = "프로그램 설치 취소";
+                    $("#txt").html(text);
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1 id="txt">프로그램 설치 중</h1>
+    <div>
+        <button id="btnStart">start</button>
+        <button id="btnEnd">End</button>
+    </div>
+    <div class="box">
+        <div id="bar" class="bar"></div>
+    </div>
+</body>
+</html>

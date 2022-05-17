@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>animation - easing</title>
+    <style>
+        * {
+            font-size: 25px;
+        }
+        #target {
+            border: 1px solid black;
+            width: 600px;
+            height: 500px;
+            text-align: center;
+        }
+        #kor {
+            width: 600px;
+            height: 500px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- easing함수 라이브러리 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            // 움직일 대상 찾아오기
+            var $img1 = $("#target");
+
+            // 나타나는 효과 (크기와 투명도)
+            $("#show").on("click", function(){
+                // $img1.show(3000, "easeInElastic");
+                $img1.show(3000, "easeInCubic");
+            });
+
+            // 사라지는 효과
+            $("#hide").on("click", function(){
+                // $img1.hide(6000, "easeOutElastic");
+                $img1.hide(6000, "easeOutCubic");
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="target">
+        <img src="images/korea.png" alt="korea" id="kor">
+    </div>
+    <div>
+        <button id="show">show</button>
+        <button id="hide">hide</button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사용자 정의 애니메이션 만들기 - 2</title>
+    <style>
+        * {
+            font-size: 25px;
+        }
+        #target {
+            border: 1px solid black;
+            width: 400px;
+            height: 300px;
+            text-align: center;
+            position: relative;
+        }
+        #kor {
+            width: 400px;
+            height: 300px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- easing함수 라이브러리 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            // 움직일 대상 찾아오기
+            var $img1 = $("#target");
+
+            // 사라지는 효과
+            $("#hide").on("click", function(){
+                $img1.animate({
+                    opacity : 0,
+                    left : 800,
+                    top : 500
+                }, 6000, "easeOutQuint", function(){
+                    alert("fadeOut완료");
+                });
+            });
+
+            // 나타나는 효과
+            $("#show").on("click", function(){
+                $img1.animate({
+                    opacity : 1,
+                    left : 0,
+                    top : 0
+                }, 6000, "easeInQuint", function(){
+                    alert("애니메이션 종료");
+                });
+            });
+
+            // stop
+            $("#stop").on("click", function(){
+                $img1.stop();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <button id="show">show</button>
+        <button id="hide">hide</button>
+        <button id="stop">stop</button>
+    </div>
+    <div id="target">
+        <img src="images/korea.png" alt="korea" id="kor">
+    </div>
+</body>
+</html>

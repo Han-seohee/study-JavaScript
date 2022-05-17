@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>slider up & down</title>
+    <style>
+        * {
+            font-size: 25px;
+        }
+        #target {
+            border: 1px solid black;
+            width: 600px;
+            height: 500px;
+            text-align: center;
+        }
+        #kor {
+            width: 600px;
+            height: 500px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- easing함수 라이브러리 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            // 움직일 대상 찾아오기
+            var $img1 = $("#target");
+
+            // 나타나는 효과 (크기 중 높이만)
+            $("#show").on("click", function(){
+                $img1.slideDown(6000, "easeInBounce");
+            });
+
+            // 사라지는 효과
+            $("#hide").on("click", function(){
+                $img1.slideUp(6000, "easeOutBounce");
+                });
+        });
+    </script>
+</head>
+<body>
+    <div id="target">
+        <img src="images/korea.png" alt="korea" id="kor">
+    </div>
+    <div>
+        <button id="show">slideDown</button>
+        <button id="hide">slideUp</button>
+    </div>
+</body>
+</html>
